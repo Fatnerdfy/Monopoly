@@ -14,12 +14,10 @@ class Game {
 private:
     Menu* menu;
     MenuFactory* mf;
-    int getInput();
 public:
     void init();
     void run();
     void term();
 };
-
 
 #endif /* game_h */

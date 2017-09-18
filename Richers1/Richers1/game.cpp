@@ -11,34 +11,21 @@
 
 using namespace std;
 
-int Game::getInput() {
-    int input;
-    cout << " Your selected:" ;
-    cin >> input;
-    cout << "Choice=" << input <<endl;
-    return input;
-}
-
 void Game::init() {
     mf = new MainMenuFactory;
     menu = mf->createMenu();
 }
 
 void Game::run() {
-    int input;
-    while (true) {
+    int input = 1;
+    while (input) {
         menu->display();
-        input = getInput();
-        if (input==0) {
-            break;
-        } else {
-            menu->select(input);
-            menu->submenu->display();
-            menu->submenu->select(getInput());
-        }
+        input = menu->getInput();
+        menu->select(input);
     }
 }
 
 void Game::term() {
-    
+    delete mf;
+    delete menu;
 }
