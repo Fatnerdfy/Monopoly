@@ -9,7 +9,10 @@
 #ifndef map_h
 #define map_h
 
+#include "player.h"
+
 class Block;
+class ImpMap;
 class Map
 {
 public:
@@ -19,10 +22,26 @@ public:
     Block * getBlock(int row,int col);
     void show();
 protected:
+    ImpMap * imap;
+};
+
+class ImpMap {
+public:
+    ImpMap(int rs, int cs);
+    virtual ~ImpMap();
+    virtual void setBlock(int row, int col, Block * b);
+    virtual Block * getBlock(int row, int col);
+    virtual void show();
+protected:
     int rows;
     int cols;
     Block *** blocks;
 private:
+};
+
+class NewMap : public Map {
+public:
+    void enter(Player * p);
 };
 
 #endif /* map_h */

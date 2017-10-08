@@ -15,6 +15,33 @@ using namespace std;
 Map::Map(int rs, int cs)
 {
     //ctor
+    imap = new ImpMap(rs, cs);
+}
+
+Map::~Map()
+{
+    //dtor
+    delete imap;
+    imap = nullptr;
+}
+
+void Map::setBlock(int row, int col, Block * b)
+{
+    imap->setBlock(row, col, b);
+}
+
+Block * Map::getBlock(int row, int col)
+{
+    return imap->getBlock(row, col);
+}
+
+void Map::show()
+{
+    imap->show();
+}
+
+///-------------------ImpMap------------------
+ImpMap::ImpMap(int rs, int cs) {
     rows = rs;
     cols = cs;
     
@@ -30,9 +57,7 @@ Map::Map(int rs, int cs)
         }
 }
 
-Map::~Map()
-{
-    //dtor
+ImpMap::~ImpMap() {
     for(int i = 0; i < rows; ++i) {
         for(int j = 0; j < cols; ++j) {
             delete blocks[i][j];
@@ -47,16 +72,16 @@ Map::~Map()
     delete[] blocks;
     blocks = nullptr;
 }
-void Map::setBlock(int row, int col, Block * b)
-{
+
+void ImpMap::setBlock(int row, int col, Block * b) {
     blocks[row][col] = b;
 }
-Block * Map::getBlock(int row, int col)
-{
+
+Block * ImpMap::getBlock(int row, int col) {
     return blocks[row][col];
 }
-void Map::show()
-{
+
+void ImpMap::show() {
     for(int i = 0; i < rows; ++i) {
         for(int j = 0; j < cols; ++j) {
             Block * block = blocks[i][j];
