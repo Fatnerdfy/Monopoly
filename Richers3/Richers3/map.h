@@ -44,4 +44,10 @@ public:
     void enter(Player * p);
 };
 
+class NewImpMap : public ImpMap {
+public:
+    NewImpMap(int row, int col);
+    virtual void show();
+};
+
 #endif /* map_h */

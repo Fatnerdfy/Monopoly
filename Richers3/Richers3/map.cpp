@@ -15,7 +15,7 @@ using namespace std;
 Map::Map(int rs, int cs)
 {
     //ctor
-    imap = new ImpMap(rs, cs);
+    imap = new NewImpMap(rs, cs);
 }
 
 Map::~Map()
@@ -94,3 +94,14 @@ void ImpMap::show() {
     }
 }
 
+void NewMap::enter(Player *p) {
+    cout << "Player enter the map..." << endl;
+}
+
+NewImpMap::NewImpMap(int row, int col) : ImpMap(row, col) {
+    
+}
+
+void NewImpMap::show() {
+    cout << "Another way to show the map." << endl;
+}
